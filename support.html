@@ -12,7 +12,7 @@
 </head>
 <body><main>
 <div class="eyebrow">App support</div>
-<h1>HydroGulp, RemindLoop &amp; TickTarget</h1>
+<h1>HydroGulp, RemindLoop, TickTarget &amp; RecallStack</h1>
 <p class="lead">Help with hydration tracking, recurring reminders, timing games, flashcard imports, purchases, and your data.</p>
 <section><h2>Contact support</h2>
 <p>For a question, bug report, or feature request, contact Shawn Roehrig through the shared GitHub support tracker. Include the app name so your request can be directed correctly.</p>
@@ -38,16 +38,21 @@
 <h3>Can I change the appearance?</h3><p>Open Settings and choose Light, Dark, or System. Light is the default.</p>
 </section>
 <section><h2>RecallStack</h2>
-<h3>How do I import a CSV from Gmail or Mail?</h3>
-<p>Open the CSV attachment in Gmail, Mail, Files, or another app that supports the iOS Share Sheet. Choose Share, then RecallStack. In the share extension, select Import. Open RecallStack and choose Review Import when prompted. Check the flashcard preview, select a delimiter if necessary, enter a deck name, and confirm Import.</p>
-<h3>Why don't I see RecallStack in the Share Sheet?</h3>
-<p>Make sure RecallStack is installed and the attachment is a CSV or compatible text file. In the iOS Share Sheet, scroll through the available apps and choose More if needed. Some email apps expose attachments differently; saving the file to Files and sharing it from there may help.</p>
-<h3>Does sharing a CSV upload it to a server?</h3>
-<p>No. RecallStack processes shared CSV data locally on your device. The extension passes the attachment to the main app through a private on-device App Group container. The app asks you to review the import before creating a deck. Your email provider may separately retain the original attachment.</p>
+<h3>How do I import a CSV file?</h3>
+<p>On the main RecallStack screen, tap the Import CSV icon, select a CSV file from Files, review the detected rows, enter a new deck name, and tap Import. You can also share a compatible CSV or text attachment from Mail, Gmail, or Files using the iOS Share Sheet. If RecallStack is not listed, try More in the Share Sheet or save the attachment to Files and import it from the main screen.</p>
+<h3>How do I copy and paste CSV text?</h3>
+<p>Open Settings &rarr; Data &rarr; Import CSV Text. Paste the full CSV text, including its header, then tap Review. Check the preview, select a delimiter if necessary, enter a new deck name, and tap Import. File import and pasted-text import use the same validation checks.</p>
 <h3>What CSV format is supported?</h3>
-<p>Use columns labeled Question and Answer. The import preview supports automatic delimiter detection and manual selection of comma, tab, semicolon, or pipe. Check the preview before importing. The current Free tier supports up to five decks with twenty cards each; Pro limits depend on an active entitlement.</p>
-<h3>How do I back up my flashcards?</h3>
-<p>Open RecallStack Settings for complete backup export/import or manual private iCloud backup and restore. Automatic cross-device iCloud sync is not currently enabled. Backups and CSV imports are separate features.</p>
+<p>The first row must contain exactly two headers in this order: <code>Question,Answer</code>. Capitalization is ignored. Each subsequent row contains a question and its answer. Comma, tab, semicolon, and pipe delimiters are supported. Enclose fields containing delimiters or line breaks in double quotes, and represent a quotation mark inside a quoted field with two double quotes. Do not add extra columns or a trailing header comma.</p>
+<pre>Question,Answer
+What is SwiftUI?,Apple's declarative UI framework
+"What is 1,000 plus 500?","1,500"</pre>
+<h3>What happens when there are import errors?</h3>
+<p>Import Preview displays valid rows, incomplete rows, and formatting issues. Incomplete rows are not imported. Correct malformed CSV in the file or pasted text and review it again. CSV import creates a new deck, rather than adding cards to an existing deck. Free accounts allow up to 5 decks and 20 cards per deck; Pro accounts allow unlimited decks and cards.</p>
+<h3>Does importing CSV upload it to a server?</h3>
+<p>No. RecallStack parses CSV files and pasted text locally. The Share Extension uses a private on-device App Group container to pass shared content to the main app. An email or file provider may separately retain the original attachment. Optional iCloud backup or sync is separate from CSV import.</p>
+<h3>How do I back up or sync my flashcards?</h3>
+<p>Settings &rarr; Data &rarr; Export Complete Backup creates a JSON backup including study progress. Import Complete Backup restores missing decks from a RecallStack JSON backup while preserving existing decks. These are separate from CSV import and export. Manual private iCloud backup and restore are available in Settings. Pro users can optionally enable automatic cross-device iCloud sync; a local safety backup is created before enabling sync. Keep separate backups for recovery.</p>
 <h3>How can I change deck order?</h3>
 <p>Open Settings, then Deck Order. By default, the most recently opened decks appear first. Turn on Sort Decks by Name for alphabetical ordering.</p>
 <p><a href="recallstack.html">Read the RecallStack Privacy Policy</a>.</p>
@@ -62,5 +67,5 @@
 <ul><li><a href="hydrogulp.html">HydroGulp Privacy Policy</a></li><li><a href="remindloop.html">RemindLoop Privacy Policy</a></li><li><a href="ticktarget.html">TickTarget Privacy Policy</a></li><li><a href="recallstack.html">RecallStack Privacy Policy</a></li></ul>
 <p>Deleting an app may remove its local data. Copies in iCloud, exported backups, and Apple Health may need to be managed separately.</p>
 </section>
-<footer>Shawn Roehrig · Updated October 16, 2026 · <a href="index.html">App privacy policies</a></footer>
+<footer>Shawn Roehrig · Updated October 18, 2026 · <a href="index.html">App privacy policies</a></footer>
 </main></body></html>
