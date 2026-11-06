@@ -2,7 +2,8 @@ name: Cleanup GitHub Actions Runs
 
 on:
   schedule:
-    - cron: '30 3 * * 0'
+    - cron: '0 20 * * 0' # 4 PM EDT
+    - cron: '0 21 * * 0' # 4 PM EST
   workflow_dispatch:
 
 permissions:
@@ -19,7 +20,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Check Eastern local time
+        id: eastern
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" || "$(TZ=America/New_York date +%H)" == "16" ]]; then
+            echo "run_cleanup=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_cleanup=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Delete old completed workflow runs
+        if: steps.eastern.outputs.run_cleanup == 'true'
         uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
